@@ -30,7 +30,7 @@
 	<div class="nav-wrapper">
 
 	
-		<a href="javascript:window.history.back();">
+		<a href="{% url 'frontpage' %}">
 			<div class="dots-wrapper">
 				<div id="dot-1" class="browser-dot"></div>
 				<div id="dot-2" class="browser-dot"></div>
@@ -38,7 +38,7 @@
 			</div>
 		</a>
 		
-		<form class="d-flex" method="post" action="{% url 'search' %}">
+		<form class="d-flex" method="post" action="{% url 'frontpage' %}">
 			{% csrf_token %}
 			<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
 			<button class="btn btn-outline-success" type="submit">Search</button>
@@ -47,7 +47,7 @@
 		{% if user.is_authenticated %}
 		<ul id="navigation">
 			<li><a href="{% url 'logout' %}">Logout </a></li>
-			<li><a href="{% url 'cart1' %}">Cart</a></li>
+			<li><a href="{% url 'cart1' 0 %}">Cart</a></li>
 		</ul>   
                   
         {% else %}

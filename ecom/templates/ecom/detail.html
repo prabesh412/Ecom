@@ -8,11 +8,11 @@
             <img class="image-fluid" imageclass="card-img-right flex-auto d-none d-md-block" src="{{product.product_image.url}}" height="600" width="900">
                 <br>
                 <br>
-                <form method="POST">
+                <form method="POST" >
         
                     {% csrf_token %}
                     
-                    <input class="btn btn-primary"  type="submit" value="add product to cart"/>
+                    <button class="btn btn-primary"  type="submit"><a href="{% url 'cart1' product.id%}">add to cart</a></button>
                 </form>
       
               </div>
