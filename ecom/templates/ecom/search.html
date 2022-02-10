@@ -1,0 +1,65 @@
+{% extends "ecom/base.html" %}
+{% block content %}
+<h2>{{data}}</h2>
+
+{% if product %}
+    {% for products in product %}
+        
+    <div class="row row-cols-1 row-cols-sm-2 ">
+        <div class="col">
+        <div class="card shadow-sm">
+            <img class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" src="{{products.product_image.url}}"><rect width="100%" height="100%" fill="#55595c"/>
+
+            <div class="card-body">
+                <a >{{products.title}}<br></a>
+            
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                <a href="{% url 'detail1' products.id %}"><button type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'detail1' products.id %}">View</button></a>
+
+                </div>
+                <p >${{products.price}}</p>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="col">
+        <div class="card shadow-sm">
+            <img class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" src="{{products.product_image.url}}"><rect width="100%" height="100%" fill="#55595c"/>
+
+            <div class="card-body">
+                <a >{{products.title}}<br></a>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                <a href="{% url 'detail1' products.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                
+                </div>
+                <p >${{products.price}}</p>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="col">
+            <div class="card shadow-sm">
+            <img class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" src="{{products.product_image.url}}"><rect width="100%" height="100%" fill="#55595c"/>
+
+            <div class="card-body">
+                <a >{{products.title}}<br></a>
+                <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <a href="{% url 'detail1' products.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                    
+                </div>
+                <p >${{products.price}}</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+    {% endfor %}
+    {% else %}
+    <p>product not found</p>    
+{% endif %}
+
+{% endblock content %}

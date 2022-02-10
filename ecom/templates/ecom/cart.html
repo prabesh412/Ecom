@@ -1,0 +1,10 @@
+{% extends "ecom/base.html" %}
+{% block content %}
+
+{% for carts in cart %}
+    <p>{{carts.products.product_name}} - {{carts.products.price}}- {{carts.quantity}}</p>
+    
+
+{% endfor %}
+    
+{% endblock content %}

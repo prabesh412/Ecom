@@ -1,0 +1,85 @@
+{% extends "ecom/base.html" %}
+{% block content %}
+
+<div class="nav-link">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropdown button
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      {% if name %}
+      {% for names in name %}
+        <li><a class="dropdown-item" href="{% url 'items' names %}">{{names}}</a></li>
+      {% endfor %}
+      {% endif %}
+    </ul>
+    </div>
+  </div>
+  
+
+{% for names in name %}
+
+    <h2>{{names}}</h2>
+    <br>
+    <br>
+    {% for products in product %}
+        {% if products.stringcat == names %}
+                
+                <div class="row row-cols-1 row-cols-sm-2 ">
+                    <div class="col">
+                      <div class="card shadow-sm">
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" src="{{products.product_image.url}}"><rect width="100%" height="100%" fill="#55595c"/>
+            
+                        <div class="card-body">
+                            <a >{{products.title}}<br></a>
+                          
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                              <a href="{% url 'detail1' products.id %}"><button type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'detail1' products.id %}">View</button></a>
+ 
+                            </div>
+                            <p >${{products.price}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="card shadow-sm">
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" src="{{products.product_image.url}}"><rect width="100%" height="100%" fill="#55595c"/>
+            
+                        <div class="card-body">
+                            <a >{{products.title}}<br></a>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                              <a href="{% url 'detail1' products.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                              
+                            </div>
+                            <p >${{products.price}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                          <img class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" src="{{products.product_image.url}}"><rect width="100%" height="100%" fill="#55595c"/>
+              
+                          <div class="card-body">
+                              <a >{{products.title}}<br></a>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                <a href="{% url 'detail1' products.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                                
+                              </div>
+                              <p >${{products.price}}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+        {% endif %}
+          
+        
+    {% endfor %}
+{% endfor %}
+{% endblock content %}
