@@ -35,5 +35,13 @@ class cart(models.Model):
     quantity = models.IntegerField(default=1, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
-    
+    def __str__(self):
+        return str(self.products)
 
+class comments(models.Model):
+    user = models.ForeignKey(User, null=True,blank=True,on_delete=models.CASCADE)
+    body = models.CharField(max_length=30)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.user)
