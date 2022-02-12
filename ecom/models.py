@@ -1,3 +1,4 @@
+from math import prod
 from sre_constants import CATEGORY
 from django.db import models
 from django.contrib.auth.models import User
@@ -39,6 +40,7 @@ class cart(models.Model):
         return str(self.products)
 
 class comments(models.Model):
+    item = models.ForeignKey(product, null=True, blank=True, on_delete=models.CASCADE)
     user = models.ForeignKey(User, null=True,blank=True,on_delete=models.CASCADE)
     body = models.CharField(max_length=30)
     date_added = models.DateTimeField(auto_now_add=True)

@@ -18,7 +18,7 @@ def frontpage(request):
 
 def detail(request, product_id1):
     product1 = get_object_or_404(product, pk=product_id1)
-
+    
     return render(request, 'ecom/detail.html', {'product':product1})
 
 @login_required
@@ -33,6 +33,7 @@ def cart1(request,product_id):
         cart2.products = product1
         cart2.customer = request.user
         cart2.save()
+
         return render(request, 'ecom/detail.html', {'product':product1})
 
     return render(request,'ecom/cart.html', {'cart': cart1})
