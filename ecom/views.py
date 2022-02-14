@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
-from .models import product, Category, cart
+from .models import product, Category, cart, comments
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
@@ -18,8 +18,20 @@ def frontpage(request):
 
 def detail(request, product_id1):
     product1 = get_object_or_404(product, pk=product_id1)
+    comment = comments()
+    review = comments.objects.filter(item=product1)
+    if request.method == 'POST':
+        comment.item = product1
+        comment.user = request.user
+        comment.body = request.POST.get('body')
+        duplicate = comments.objects.filter(user= request.user, item= product1)
+        if duplicate:
+            error = "you cannot post more than one"
+            return render(request, 'ecom/detail.html', {'product':product1,'review':review, 'error': error})
+        comment.save()
     
-    return render(request, 'ecom/detail.html', {'product':product1})
+
+    return render(request, 'ecom/detail.html', {'product':product1,'review':review})
 
 @login_required
 def cart1(request,product_id):

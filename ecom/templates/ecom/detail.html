@@ -1,5 +1,8 @@
 {% extends "ecom/base.html" %}
 {% block content %}
+{% if error %}
+          {{error}}
+        {% endif %}
     <main role="main">
           <h1 class="text-center pt-3">{{product.product_name}}</h1>
             
@@ -22,8 +25,39 @@
             <br>
             <br>
             <div class="container">
-            
+              {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'detail1' product.id %}" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                Title:
+                <br>
+                <br>
+                Body:
+                <br>
+                <textarea id="txtArea" rows="10" cols="70" name="body"></textarea>
+                
+                <br>
+              
+                <input class="btn btn-primary"  type="submit" value="add product"/>
+            </form>
         </div>
+        {% endif %}
+        
+        {% for reviews in review %}
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            
+              <strong class="d-inline-block mb-2 text-success">review</strong>
+              
+              <div class="mb-1 text-muted"></div>
+              <p class="card-text mb-auto">{{reviews.body}}</p>
+              <p>created by : {{reviews.username}}</p>
+              
+            </div>
+            
+          </div>
+        </div>
+        {% endfor %}
           </div>
         </main>
 

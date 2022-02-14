@@ -40,10 +40,21 @@ class cart(models.Model):
         return str(self.products)
 
 class comments(models.Model):
-    item = models.ForeignKey(product, null=True, blank=True, on_delete=models.CASCADE)
+    item = models.ForeignKey(product, null=True, on_delete=models.SET_NULL)
     user = models.ForeignKey(User, null=True,blank=True,on_delete=models.CASCADE)
     body = models.CharField(max_length=30)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.user)
+
+    def username(self):
+        name = str(self.user.username)
+        user = name.split('@')[0]
+        return user
+
+
+
+class customer(models.Model):
+    verified_customer = models.ForeignKey(User, null=True, blank=True,on_delete=models.CASCADE)
+    bought = models.ForeignKey(product,null=True,on_delete=models.SET_NULL)
