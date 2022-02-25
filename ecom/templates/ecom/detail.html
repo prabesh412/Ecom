@@ -1,8 +1,17 @@
 {% extends "ecom/base.html" %}
 {% block content %}
-{% if error %}
-          {{error}}
-        {% endif %}
+{% if alert1 %}
+  <script>
+    let message = "cant post more than one comment"
+    alert(message)
+  </script>
+{% endif %}  
+{% if alert %}
+  <script>
+    let message = "Item already in cart"
+    alert(message)
+  </script>
+{% endif %} 
     <main role="main">
           <h1 class="text-center pt-3">{{product.product_name}}</h1>
             
@@ -11,7 +20,7 @@
             <img class="image-fluid" imageclass="card-img-right flex-auto d-none d-md-block" src="{{product.product_image.url}}" height="600" width="900">
                 <br>
                 <br>
-                <form method="POST" >
+                <form method="POST" action="{% url 'cart1' product.id %}">
         
                     {% csrf_token %}
                     

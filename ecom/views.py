@@ -26,8 +26,8 @@ def detail(request, product_id1):
         comment.body = request.POST.get('body')
         duplicate = comments.objects.filter(user= request.user, item= product1)
         if duplicate:
-            error = "you cannot post more than one"
-            return render(request, 'ecom/detail.html', {'product':product1,'review':review, 'error': error})
+            msg = 1
+            return render(request, 'ecom/detail.html', {'product':product1,'review':review, 'alert1': msg})
         comment.save()
     
 
@@ -41,7 +41,8 @@ def cart1(request,product_id):
         product1 = get_object_or_404(product, pk=product_id)
         for carts in cart1:
             if carts.products == product1:
-                return render(request, 'ecom/detail.html', {'product':product1})
+                msg = 1
+                return render(request, 'ecom/detail.html', {'product':product1, 'alert': msg})
         cart2.products = product1
         cart2.customer = request.user
         cart2.save()
